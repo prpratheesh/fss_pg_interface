@@ -1,0 +1,100 @@
+name: fss_pg_interface
+description: "A new Flutter project."
+# The following line prevents the package from being accidentally published to
+# pub.dev using `flutter pub publish`. This is preferred for private packages.
+publish_to: 'none' # Remove this line if you wish to publish to pub.dev
+
+version: 1.0.0+1
+
+environment:
+  sdk: '>=3.4.3 <4.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+  cupertino_icons: ^1.0.6
+  google_fonts: 6.1.0
+  dio: ^5.7.0
+  flutter_dotenv: ^5.1.0
+  colored_json: ^1.1.2
+  intl: ^0.19.0
+  flutter_highlight: ^0.7.0
+  path_provider: ^2.1.4
+  file_selector: ^1.0.3
+  file_picker: ^8.1.2
+  url_launcher: ^6.3.0
+  encrypt: ^5.0.3
+  pointycastle: ^3.9.1
+  http: ^1.2.2
+  webview_flutter: ^4.5.0
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^3.0.0
+
+flutter:
+  uses-material-design: true
+  assets:
+    - assets/.env
+    - assets/bg.jpg
+    - assets/bg2.jpg
+  fonts:
+    - family: Aleo
+      fonts:
+        - asset: assets/fonts/Aleo-Thin.ttf
+          weight: 100
+          style: normal
+        - asset: assets/fonts/Aleo-ExtraLight.ttf
+          weight: 200
+          style: normal
+        - asset: assets/fonts/Aleo-Light.ttf
+          weight: 300
+          style: normal
+        - asset: assets/fonts/Aleo-Regular.ttf
+          weight: 400
+          style: normal
+        - asset: assets/fonts/Aleo-Medium.ttf
+          weight: 500
+          style: normal
+        - asset: assets/fonts/Aleo-SemiBold.ttf
+          weight: 600
+          style: normal
+        - asset: assets/fonts/Aleo-Bold.ttf
+          weight: 700
+          style: normal
+        - asset: assets/fonts/Aleo-ExtraBold.ttf
+          weight: 800
+          style: normal
+        - asset: assets/fonts/Aleo-Black.ttf
+          weight: 900
+          style: normal
+        - asset: assets/fonts/Aleo-ThinItalic.ttf
+          weight: 100
+          style: italic
+        - asset: assets/fonts/Aleo-ExtraLightItalic.ttf
+          weight: 200
+          style: italic
+        - asset: assets/fonts/Aleo-LightItalic.ttf
+          weight: 300
+          style: italic
+        - asset: assets/fonts/Aleo-Italic.ttf
+          weight: 400
+          style: italic
+        - asset: assets/fonts/Aleo-MediumItalic.ttf
+          weight: 500
+          style: italic
+        - asset: assets/fonts/Aleo-SemiBoldItalic.ttf
+          weight: 600
+          style: italic
+        - asset: assets/fonts/Aleo-BoldItalic.ttf
+          weight: 700
+          style: italic
+        - asset: assets/fonts/Aleo-ExtraBoldItalic.ttf
+          weight: 800
+          style: italic
+        - asset: assets/fonts/Aleo-BlackItalic.ttf
+          weight: 900
+          style: italic
+  # For details regarding fonts from package dependencies,
+  # see https://flutter.dev/custom-fonts/#from-packages
