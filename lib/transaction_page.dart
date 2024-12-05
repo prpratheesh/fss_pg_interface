@@ -401,7 +401,7 @@ class _TransactionPageState extends State<TransactionPage>
                                               .map((String value) {
                                             return Center(
                                               child: Text(
-                                                _tranType!,
+                                                _tranType,
                                                 style: TextStyle(
                                                   fontSize: fontSizes.smallerFontSize5,
                                                   fontWeight: FontWeight.bold,
@@ -482,25 +482,31 @@ class _TransactionPageState extends State<TransactionPage>
                                     onTap: () async {
                                       formData['id'] = envMap['TRAN_PORTAL_ID'];
                                       formData['password'] = envMap['TRAN_PORTAL_PASSWORD'];
+                                      Logger.log('DATA 1: $formData', level: LogLevel.info);
                                       String queryString = convertToQueryString(formData) + '&';
+                                      Logger.log('DATA 2: $queryString', level: LogLevel.info);
                                       String payload = AES.encryptAES(envMap['RESOURCE_KEY'], queryString);
-                                      String jsonOutput = convertToJsonString(payload, envMap['TRAN_PORTAL_ID']);
+                                      Logger.log('DATA 3: $payload', level: LogLevel.info);
+                                      var jsonOutput = convertToJsonString(payload, envMap['TRAN_PORTAL_ID']);
                                       Logger.log('UploadData: $jsonOutput', level: LogLevel.info);
                                       addStatusMessage(jsonOutput);
-
-                                      var url = 'https://pguat.creditpluspinelabs.com/ipay/hostedHTTP';
+                                      // var url = 'https://pguat.creditpluspinelabs.com/ipay/hostedHTTP';
+                                      // var url = 'https://pguat.creditpluspinelabs.com/ipay/hostedHTTP';
+                                      var url = 'http://localhost:8080/proxy/iPay/hostedHTTP';
                                       try {
                                         final response = await httpService.sendPostRequest(url, jsonOutput);
                                         if (response.statusCode == 200) {
                                           var data = jsonDecode(response.body);
                                           final trandata = data['trandata'];
                                           if (trandata != null) {
+                                            Logger.log('return DATA 1: $trandata', level: LogLevel.info);
                                             final decryptedTrandata = AES.decryptAES(envMap['RESOURCE_KEY'], trandata);
                                             Logger.log('Decrypted URL && Payment ID: $decryptedTrandata', level: LogLevel.debug);
                                             int colonIndex = decryptedTrandata.indexOf(":");
                                             String paymentId = decryptedTrandata.substring(0, colonIndex);
                                             String url = decryptedTrandata.substring(colonIndex + 1);
                                             final completeUrl = '$url?PaymentID=$paymentId';
+                                            Logger.log('DATA 4: $completeUrl', level: LogLevel.info);
                                             Logger.log('Page: $completeUrl', level: LogLevel.critical);
                                             final uri = Uri.parse(completeUrl);
                                             await launchUrl(uri);
@@ -512,7 +518,7 @@ class _TransactionPageState extends State<TransactionPage>
                                           print('Response body: ${response.body}');
                                         }
                                       } catch (e) {
-                                        print('Error: $e');
+                                        Logger.log('Error: $e', level: LogLevel.error);
                                       }
                                     },
                                     child: MouseRegion(
