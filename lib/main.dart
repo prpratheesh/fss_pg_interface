@@ -22,7 +22,7 @@ class MyApp extends StatelessWidget {
     ]);
 
     return MaterialApp(
-      title: "SAMPLE BILLING APP",
+      title: "PG INTEGRATION APP",
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         // Apply GoogleFonts.aleo() as the default font for the app
